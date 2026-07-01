@@ -31,7 +31,7 @@ In order to parse PDFs, ArtiFinder uses [Poppler](https://poppler.freedesktop.or
 On a Debian-based system, all necessary packages can be installed as follows:
 
 ```bash
-sudo apt-get install python3-gi python3-gi-cairo gir1.2-gtk-4.0 libxml2 cmake pkg-config libcairo2-dev girepository-2.0 libpoppler-glib-dev gir1.2-poppler-0.18
+sudo apt-get install python3-gi python3-gi-cairo gir1.2-gtk-4.0 libxml2 cmake pkg-config libcairo2-dev libpoppler-glib-dev gir1.2-poppler-0.18 girepository-2.0 libgirepository1.0-dev
 ```
 
 

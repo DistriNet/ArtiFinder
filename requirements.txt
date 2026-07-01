@@ -1,6 +1,6 @@
 beautifulsoup4
 numpy
-PyGObject
+PyGObject==3.50.0
 PyYAML
 regex
 requests
