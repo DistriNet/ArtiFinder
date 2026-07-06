@@ -56,7 +56,7 @@ def citation_graph(data):
     for year in range(0, 26):
         papers_with_artifact = [d for d in data if d.get("edition") == str(year) and d.get("discovered_artifact") and d.get("citations") is not None]
         papers_no_artifact = [d for d in data if d.get("edition") == str(year) and (not d.get("discovered_artifact")) and d.get("citations") is not None]
-        papers_ae = [d for d in data if d.get("edition") == str(year) and d.get("actual_artifact") and d.get("citations") is not None]
+        papers_ae = [d for d in data if d.get("edition") == str(year) and d.get("secartifacts_artifact") and d.get("citations") is not None]
         if papers_with_artifact:
             avg_citation_year_with_artifact[year] = sum(p.get("citations", 0) for p in papers_with_artifact) / len(papers_with_artifact)
         else:
@@ -103,7 +103,7 @@ def gh_stats_graph(data):
         if doc.get("conference") == "ccs" and int(doc.get("edition", 0)) < 23: continue
         if doc.get("conference") == "ndss" and int(doc.get("edition", 0)) < 24: continue
         if stats:
-            if doc.get("actual_artifact", None):
+            if doc.get("secartifacts_artifact", None):
                 stars_with_ae[ int(doc.get("edition")) ] += stats.get("stars", 0)
                 forks_with_ae[ int(doc.get("edition")) ] += stats.get("forks", 0)
                 watchers_with_ae[ int(doc.get("edition")) ] += stats.get("watchers", 0)
