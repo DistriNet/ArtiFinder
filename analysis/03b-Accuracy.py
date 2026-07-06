@@ -1,6 +1,13 @@
+"""Reproduces figures and numbers from paper Section 3.3: ArtiFinder Accuracy.
+
+Compares ArtiFinder's discovered artifacts against the SecArtifacts, GetIn and
+manual-sample ground-truth datasets and logs presence/absence accuracy per set.
+"""
 from util import get_data, url_matches_any_discovered_artifact, log_result
 
 # Section 3.2: accuracy compared to Manual, Get In and SecArtifacts datasets
+
+# Tally TP/TN/FP/FN (and unlinked misses) for one ground-truth dataset.
 def confusion_matrix(data, data_subset):
     counts = {"TP": 0, "TN": 0, "FP": 0, "FN": 0, "TP_docs": [], "not_linked": 0}
     for doc in [d for d in data if d.get(f"accuracy_{data_subset}") is not None]:
@@ -19,6 +26,7 @@ def confusion_matrix(data, data_subset):
                 counts["not_linked"] += 1
     return counts
 
+# Among true positives, split into exact URL matches vs accepted alternates.
 def identification_accuracy(data_subset, cm):
     exact = 0
     alt = 0
@@ -31,6 +39,7 @@ def identification_accuracy(data_subset, cm):
             alt += 1
     return exact, alt
 
+# Log the full accuracy breakdown for each ground-truth dataset.
 def c_matrix(data):
     datasets = [
         ("SecArtifacts", "secartifacts"),

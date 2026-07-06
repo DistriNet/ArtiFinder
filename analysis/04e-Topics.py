@@ -1,7 +1,11 @@
+"""Reproduces figures and numbers from paper Section 4.5: Artifact by paper topic.
+
+Builds Table 4, artifact-release rates per paper topic (topics with >=100 papers), sorted by artifact percentage.
+"""
 from util import get_data, log_result
 from tabulate import tabulate
 
-# Table 3: topics
+# Table 4: topics
 def topic_stats(data):
     topic_counts = {}
     for doc in [d for d in data if d.get("paper_topic")]:

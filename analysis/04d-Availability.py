@@ -1,3 +1,8 @@
+"""Reproduces figures and numbers from paper Section 4.4: Long-term artifact availability.
+
+Builds Figure 8, the share of unreachable artifacts per year split into GitHub
+vs other hosts, and logs the fraction of GitHub artifacts with no content.
+"""
 from util import get_data, setup_plot_style, save_plot, log_result
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter

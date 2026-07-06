@@ -1,10 +1,15 @@
+"""Reproduces figures and numbers from paper Section 3.1: ArtiFinder Design.
+
+Builds Figure 2, ArtiFinder's accuracy on the manual sample as a function of the
+link-score threshold, used to justify the chosen cutoff of 20.
+"""
 from util import get_data, setup_plot_style, save_plot, log_result
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 
-# 3.1 ArtiFinder Design
-
 # Helper methods to calculate the optimal score cutoff for accuracy
+
+# Count papers whose top link scores >= cutoff and that truly have an artifact.
 def calc_true_positive(papers, cutoff: int) -> int:
     count = 0
     for p in papers:
@@ -14,6 +19,7 @@ def calc_true_positive(papers, cutoff: int) -> int:
             count += 1
     return count
 
+# Count papers with no link >= cutoff and that truly have no artifact.
 def calc_true_negative(papers, cutoff: int) -> int:
     count = 0
     for p in papers:
@@ -23,6 +29,7 @@ def calc_true_negative(papers, cutoff: int) -> int:
             count += 1
     return count
 
+# Fraction of papers correctly classified (TP+TN) at the given cutoff.
 def accuracy(papers, cutoff: int)->float:
     true_positive = calc_true_positive(papers, cutoff)
     true_negative = calc_true_negative(papers, cutoff)

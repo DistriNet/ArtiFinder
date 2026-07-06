@@ -1,3 +1,8 @@
+"""Reproduces figures and numbers from paper Section 4.6: Authors and affiliations.
+
+Builds Figure 9 (author-count distribution with vs without artifacts, plus the
+point-biserial correlation) and Table 5 (artifact-release ratio per affiliation).
+"""
 from util import get_data, setup_plot_style, save_plot, log_result
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
@@ -50,7 +55,7 @@ def corr_authors_amount(data):
     correlation, p_value = pointbiserialr(artifact_presence, author_counts)
     log_result(f"Point-biserial correlation: {correlation:.2f}, p-value: {p_value}\n")
 
-# Table 4: Correlation between affiliations and artifact presence
+# Table 5: Correlation between affiliations and artifact presence
 def corr_afill_artifact(data):
     affiliation_stats = {}
     for paper in [d for d in data if d.get("affiliations")]:

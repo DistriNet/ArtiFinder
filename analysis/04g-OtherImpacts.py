@@ -1,3 +1,9 @@
+"""Reproduces figures and numbers from paper Section 4.7: Popularity metrics.
+
+Runs the citation regressions (overall and AEC-only), builds Figure 10 (average
+citations per year by artifact status) and Figure 11 (GitHub stars/forks/watchers
+for AE vs non-AE artifacts).
+"""
 from util import get_data, setup_plot_style, save_plot, log_result
 import matplotlib.pyplot as plt
 import pandas as pd

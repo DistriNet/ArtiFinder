@@ -123,4 +123,5 @@ python reproduce_results.py --experiment E2
 - `data/data.json` — the full longitudinal dataset (USENIX Security, NDSS, IEEE S&P, ACM CCS,
   2000–2025), with paper metadata and ArtiFinder's discovered links.
 - `data/data-acsac.json` — the ACSAC dataset used for the Section 5 case study.
-- `data/by_conference/` — a human-readable per-conference/per-year YAML view.
+
+A human-readable version of our dataset, open for manual corrections and updates is available at our [GitHub](github.com/DistriNet/ArtiFinder-data).

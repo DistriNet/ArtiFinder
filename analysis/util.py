@@ -1,3 +1,9 @@
+"""Shared utilities for the paper's reproduction scripts.
+
+Provides data loading, plot styling, result logging, URL
+normalization/matching, and hosting-domain classification used across the
+analysis scripts.
+"""
 import json
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
@@ -9,6 +15,7 @@ DATAFILE = "data/data.json"
 DATAFILEACSAC = "data/data-acsac.json"
 RESULTS_FILE = "results.md"
 
+# Append a line to the results markdown file.
 def log_result(text):
     with open(RESULTS_FILE, "a") as f:
         f.write(f"{text}\n")
@@ -25,20 +32,24 @@ def setup_plot_style(font_size=16):
         "figure.titlesize": font_size + 4,
     })
 
+# Tight-layout, save the figure to disk at 300 dpi, and close it.
 def save_plot(fig, filename):
     plt.tight_layout()
     fig.savefig(filename, bbox_inches='tight', dpi=300)
     print(f"Saved figure to {filename}")
     plt.close(fig)
 
+# Load the main paper dataset.
 def get_data():
     with open(DATAFILE) as f:
         return json.load(f)
 
+# Load the ACSAC case-study dataset.
 def get_data_acsac():
     with open(DATAFILEACSAC) as f:
         return json.load(f)
 
+# True if the actual URL matches any of the discovered link URLs.
 def url_matches_any_discovered_artifact(actual_url: str, links: list[dict]) -> bool:
     for link in links:
         if _urls_match(actual_url, link.get("link")):
@@ -160,6 +171,7 @@ domain_hatch = {
     "Other": "//",
 }
 
+# Map a URL to its hosting-platform label (e.g. GitHub Repo, Zenodo, GitLab).
 def convert_url_to_domain(url: str) -> str:
     parsed_url = urlparse(url)
     domain = parsed_url.netloc

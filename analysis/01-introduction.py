@@ -1,3 +1,8 @@
+"""Reproduces figures and numbers from paper Section 1: Introduction.
+
+Builds Figure 1, the aggregate share of papers with a discovered artifact per
+year across all conferences, and logs the 2000 vs 2025 endpoints.
+"""
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 from util import get_data, setup_plot_style, save_plot, log_result

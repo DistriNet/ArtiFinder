@@ -1,9 +1,14 @@
+"""Reproduces figures and numbers from paper Section 4.1: Artifact Presence.
+
+Builds Figure 3, per-conference artifact presence over time, and runs a
+permutation test on presence before vs after each venue's AEC introduction.
+"""
 from util import get_data, setup_plot_style, save_plot, log_result
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 import numpy as np
 
-# Figure 3.
+# Figure 3: per-conference artifact presence as small multiples.
 def artifact_presence_graph(data):
     setup_plot_style()
     years_full = list(range(2000, 2026))
@@ -14,6 +19,7 @@ def artifact_presence_graph(data):
         if year[0] == "0":
             year = year[1:]
 
+        # Share of that conference/edition's papers where `field` is set.
         def pct(conf, field):
             total = len([d for d in data if d["conference"] == conf and d["edition"] == year])
             if total == 0:
@@ -71,6 +77,7 @@ def artifact_presence_graph(data):
     save_plot(fig, "figures/3-artifact_presence_smallmultiples.png")
 
 
+# Permutation test: does artifact presence rise after AEC introduction? derived from [40]
 def olszewski_analysis(data):
     # Mapping conference to its specific AEC introduction year (edition format)
     cutoffs = {

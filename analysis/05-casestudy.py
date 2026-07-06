@@ -1,9 +1,16 @@
+"""Reproduces figures and numbers from paper Section 5: Case Study.
+
+Applies ArtiFinder to the ACSAC dataset: logs its accuracy against the ACSAC
+SecArtifacts ground truth and builds Figure 12, ACSAC hosting-platform share
+over time.
+"""
 from urllib.parse import urlparse
 
 from util import get_data_acsac, domain_colors, domain_hatch, convert_url_to_domain, setup_plot_style, save_plot, log_result, url_matches_any_discovered_artifact
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 
+# Tally TP/TN/FP/FN (and unlinked misses) for one ground-truth dataset.
 def confusion_matrix(data, data_subset):
     counts = {"TP": 0, "TN": 0, "FP": 0, "FN": 0, "TP_docs": [], "not_linked": 0}
     for doc in [d for d in data if d.get(f"accuracy_{data_subset}") is not None]:
@@ -22,6 +29,7 @@ def confusion_matrix(data, data_subset):
                 counts["not_linked"] += 1
     return counts
 
+# Among true positives, split into exact URL matches vs accepted alternates.
 def identification_accuracy(data_subset, cm):
     exact = 0
     alt = 0
@@ -34,6 +42,7 @@ def identification_accuracy(data_subset, cm):
             alt += 1
     return exact, alt
 
+# Log the accuracy breakdown for the ACSAC SecArtifacts dataset.
 def c_matrix(data):
     name = "ACSAC SecArtifacts"
     subset = "secartifacts"
@@ -52,6 +61,7 @@ def c_matrix(data):
     log_result(f"  Overall accuracy: {(exact + alt + cm['TN'] + missing)/total*100:.1f}%")
 
 
+# Figure 12: ACSAC hosting-platform share per year as a stacked bar chart.
 def domain_area_chart_perct_acsac(data):
     setup_plot_style()
     years = list(range(2017, 2026))

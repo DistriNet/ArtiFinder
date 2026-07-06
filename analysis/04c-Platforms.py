@@ -1,3 +1,8 @@
+"""Reproduces figures and numbers from paper Section 4.3: Hosting platform.
+
+Builds Figure 5 (overall hosting-platform share over time), Figure 6 (the same
+split per conference) and Figure 7 (artifacts served from dedicated domains).
+"""
 from util import get_data, domain_colors, domain_hatch, convert_url_to_domain, setup_plot_style, save_plot, log_result
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter

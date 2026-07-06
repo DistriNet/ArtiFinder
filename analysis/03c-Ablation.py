@@ -1,6 +1,13 @@
+"""Reproduces figures and numbers from paper Section 3.4: Ablation Study.
+
+Removes individual scoring heuristics, re-derives the discovered artifact, and
+logs how SecArtifacts accuracy drops without each heuristic.
+"""
 from util import get_data, log_result
 
 # Section 3.3: Ablation study on heuristics
+
+# Strip one heuristic from every link, rescore, and re-pick the top artifact.
 def filter_heuristic(papers: list[dict], heuristic: str) -> list[dict]:
     filtered = []
     count = 0
@@ -25,6 +32,7 @@ def filter_heuristic(papers: list[dict], heuristic: str) -> list[dict]:
     log_result(f"percentage of links affected: {round(count / len(papers) * 100, 2)}%")
     return filtered
 
+# Run the ablation for each heuristic and log the resulting accuracy.
 def ablation_study():
     data = get_data()
     data = [d for d in data if d.get("accuracy_secartifacts") is not None and d.get("not_linked") is None]

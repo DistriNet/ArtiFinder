@@ -1,4 +1,9 @@
-from util import get_data, setup_plot_style, save_plot, log_result
+"""Reproduces figures and numbers from paper Section 4.2: Participation in artifact evaluation.
+
+Builds Figure 4, the year-by-year share of USENIX Security and NDSS papers
+earning each artifact-evaluation badge.
+"""
+from util import get_data, setup_plot_style
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 
