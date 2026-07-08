@@ -2,9 +2,16 @@
 
 ArtiFinder is an automated tool for discovering and ranking research artifacts linked from the PDFs of papers. It extracts every URL from a paper, then scores each candidate through a multi-phase ranking pipeline to identify the link most likely to be the paper's artifact.
 
-This repository contains the artifact for the USENIX Security 2026 paper:
+This repository contains the artifact for our USENIX Security 2026 [paper](https://daanvs.be/files/usenix-share.pdf):
 
-> **"Not all those who share are lost: Analyzing 25 Years of Cybersecurity Artifact Sharing Practices Through Automated Discovery"**
+```bibtex
+@inproceedings{vansteenhuyse26notall,
+  title     = {Not All Those Who Share Are Lost: Analyzing 25 Years of Cybersecurity Artifact Sharing Practices Through Automated Discovery},
+  author    = {Vansteenhuyse, Daan and Bols, Arthur and Desmet, Lieven and Le Pochat, Victor and Van Bulck, Jo and Bognar, Marton},
+  year      = 2026,
+  booktitle = {USENIX Security},
+}
+```
 
 It contains three things:
 
@@ -16,7 +23,7 @@ It contains three things:
 
 A snapshot of the code and data used for the paper is available at [Zenodo](https://doi.org/10.5281/zenodo.20412202).
 
-We invite corrections and updates to our dataset at [GitHub](github.com/DistriNet/ArtiFinder-data).
+We invite manual validation and corrections to our dataset in the [ArtiFinder-Data repository](https://github.com/DistriNet/ArtiFinder-Data).
 
 ## Dependencies
 
@@ -124,4 +131,4 @@ python reproduce_results.py --experiment E2
   2000–2025), with paper metadata and ArtiFinder's discovered links.
 - `data/data-acsac.json` — the ACSAC dataset used for the Section 5 case study.
 
-A human-readable version of our dataset, open for manual corrections and updates is available at our [GitHub](github.com/DistriNet/ArtiFinder-data).
+A human-readable version of our dataset, open for manual corrections and updates is [also available](https://github.com/DistriNet/ArtiFinder-Data).
