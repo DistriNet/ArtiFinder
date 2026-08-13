@@ -132,3 +132,9 @@ python reproduce_results.py --experiment E2
 - `data/data-acsac.json` — the ACSAC dataset used for the Section 5 case study.
 
 A human-readable version of our dataset, open for manual corrections and updates is [also available](https://github.com/DistriNet/ArtiFinder-Data).
+
+The script used to covert the raw ArtiFinder JSON results into that repository is [`data/split_data.py`](data/split_data.py), invoked as:
+
+```shell-session
+./split_data.py --input data.json --artifact-score 20 --fields title authors page_link
+```
