@@ -6,6 +6,7 @@ from collections.abc import Iterator, Sequence
 from typing import Any, override
 
 import requests
+import urllib3
 
 from artifinder.links import parsing
 from artifinder.links.util import safe_parse_url
