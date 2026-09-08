@@ -138,3 +138,11 @@ The script used to covert the raw ArtiFinder JSON results into that repository i
 ```shell-session
 ./split_data.py --input data.json --artifact-score 20 --fields title authors page_link
 ```
+
+To propagate specific field updates from `data/by_conference` into
+that repository's YAML files, without touching other fields such as manual corrections or
+`validated` status, use [`data/update-entries.py`](data/update-entries.py), invoked as:
+
+```shell-session
+./update-entries.py -src by_conference -dest ../../ArtiFinder-Data/data -fields authors title
+```

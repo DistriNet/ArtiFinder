@@ -56,6 +56,11 @@ def extract_fields(obj, tree):
     for key, subtree in tree.items():
         val = obj.get(key)
         if subtree is None:
+            if key == "authors" and isinstance(val, list):
+                val = [
+                    a[len("Author:"):].lstrip() if isinstance(a, str) and a.startswith("Author:") else a
+                    for a in val
+                ]
             result[key] = val
         elif isinstance(val, dict):
             if len(subtree) == 1:
